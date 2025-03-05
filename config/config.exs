@@ -43,7 +43,7 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "4.0.0",
+  version: "3.4.3",
   tp_dashboard: [
     args: ~w(
       --config=tailwind.config.js
@@ -52,6 +52,7 @@ config :tailwind,
     ),
     cd: Path.expand("../assets", __DIR__)
   ]
+  config :gettext, :default_locale, "fr"
 
 # Configures Elixir's Logger
 config :logger, :console,

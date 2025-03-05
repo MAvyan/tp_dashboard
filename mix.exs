@@ -33,6 +33,7 @@ defmodule TpDashboard.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.20"},
+      {:salad_ui, "~> 0.14"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},

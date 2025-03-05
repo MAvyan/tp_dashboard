@@ -1,0 +1,59 @@
+<.header class="text-center [&_h1]:text-orange-500 [&_h1]:font-bold [&_h1]:text-4xl">
+    {gettext("Dashboard")}
+    <:subtitle>
+        {gettext("Here you can find all your informations")}
+    </:subtitle>
+
+    <:actions>
+        <.button class="bg-orange-500 text-white" type="button" phx-click={show_modal("user-setting-modal")} phx-value-blabla="truc">
+            {gettext("Change Settings")}
+        </.button>
+    </:actions>
+</.header>
+
+<p>
+  {@user.name}
+</p>
+
+<.separator class="my-8" orientation="horizontal" />
+
+
+<div class="grid grid-cols-2">
+    <.card class="text-center">
+        <.card_content class="flex justify-center">
+            <img src={@user.avatar_url}
+            class="rounded-full" height="200" width="200"/>
+        </.card_content>
+        <.card_header class="mt-4">
+            <.card_title>
+                {@user.name}
+            </.card_title>
+        </.card_header>
+    </.card>
+</div>
+
+<.modal id="user-setting-modal">
+    <h3>Hello, world</h3>
+
+    <.simple_form for={@user_form} phx-change="user-validate" phx-submit={JS.push("user-submit") |>  hide_modal("user-setting-modal")} >
+    <.input type="text"
+        field={@user_form[:name]}
+        label={gettext("Name")}
+        placeholder={gettext("Type your name")}
+        value={@user.name}/>
+    <.input type="text"
+        field={@user_form[:avatar_url]}
+        label={gettext("Avatar URL")}
+        placeholder={gettext("Type your avatar URL")}
+        value={@user.avatar_url}/>
+
+        <:actions>
+            <.button type="reset">
+            {gettext("Cancel")}
+            </.button>
+            <.button type="submit">
+            {gettext("Submit")}
+            </.button>
+        </:actions>
+    </.simple_form>
+</.modal>

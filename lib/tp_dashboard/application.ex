@@ -8,6 +8,8 @@ defmodule TpDashboard.Application do
   @impl true
   def start(_type, _args) do
     children = [
+# Start TwMerge cache
+TwMerge.Cache,
       TpDashboardWeb.Telemetry,
       TpDashboard.Repo,
       {DNSCluster, query: Application.get_env(:tp_dashboard, :dns_cluster_query) || :ignore},
@@ -17,7 +19,7 @@ defmodule TpDashboard.Application do
       # Start a worker by calling: TpDashboard.Worker.start_link(arg)
       # {TpDashboard.Worker, arg},
       # Start to serve requests, typically the last entry
-      TpDashboardWeb.Endpoint
+      TpDashboardWeb.Endpoint,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
